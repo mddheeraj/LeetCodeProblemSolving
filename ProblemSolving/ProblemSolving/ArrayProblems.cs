@@ -84,7 +84,7 @@ namespace ProblemSolving
             int l = 0, r = height.Length-1;
             while(l<r)
             {
-                highest = Math.Max((Math.Min(height[l], height[r]) * r - l), highest);
+                highest = Math.Max((Math.Min(height[l], height[r]) * (r - l)), highest);
 
                 if (height[l] < height[r])
                     l++;
