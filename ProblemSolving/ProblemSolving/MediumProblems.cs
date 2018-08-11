@@ -141,6 +141,7 @@ namespace ProblemSolving
         }
 
         //https://leetcode.com/problems/3sum/description/
+        //https://www.geeksforgeeks.org/find-triplets-array-whose-sum-equal-zero/
         public static IList<IList<int>> ThreeSum(int[] nums)
         {
             IList<IList<int>> results = new List<IList<int>>();
