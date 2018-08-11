@@ -27,6 +27,7 @@ namespace ProblemSolving
         {
             Console.WriteLine(MediumProblems.Convert("paypalishiring", 4));
             Console.WriteLine(MediumProblems.MyAtoi("   -42"));
+            Console.WriteLine(MediumProblems.LongestPalindrome("aaaaaaaabba"));
         }
     }
 }

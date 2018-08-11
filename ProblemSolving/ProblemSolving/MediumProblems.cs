@@ -212,9 +212,9 @@ namespace ProblemSolving
 
             for(int length=3; length<s.Length; length++)
             {
-                for(int i=0; i<s.Length-length; i++)
+                for(int i=0; i<s.Length-length+1; i++)
                 {
-                    int j = s.Length - length - 1;
+                    int j = i + length - 1;
                     if(s[i] == s[j] && dp[i+1, j-1])
                     {
                         dp[i, j] = true;
