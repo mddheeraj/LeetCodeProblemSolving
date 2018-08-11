@@ -26,6 +26,7 @@ namespace ProblemSolving
         static void MediumProblemsSolutions()
         {
             Console.WriteLine(MediumProblems.Convert("paypalishiring", 4));
+            Console.WriteLine(MediumProblems.MyAtoi("   -42"));
         }
     }
 }
