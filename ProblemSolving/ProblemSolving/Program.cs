@@ -25,9 +25,15 @@ namespace ProblemSolving
 
         static void MediumProblemsSolutions()
         {
-            Console.WriteLine(MediumProblems.Convert("paypalishiring", 4));
-            Console.WriteLine(MediumProblems.MyAtoi("   -42"));
-            Console.WriteLine(MediumProblems.LongestPalindrome("aaaaaaaabba"));
+            MediumProblems mp = new MediumProblems();
+            Console.WriteLine(mp.Convert("paypalishiring", 4));
+            Console.WriteLine(mp.MyAtoi("   -42"));
+            Console.WriteLine(mp.LongestPalindrome("aaaaaaaabba"));
+            var resultOfLetterCombinations = mp.LetterCombinations("23");
+            foreach(string val in resultOfLetterCombinations)
+            {
+                Console.WriteLine(val);
+            }
         }
     }
 }

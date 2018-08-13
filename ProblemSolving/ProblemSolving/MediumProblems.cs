@@ -6,11 +6,26 @@ using System.Threading.Tasks;
 
 namespace ProblemSolving
 {
-    public static class MediumProblems
+    public class MediumProblems
     {
+        private IList<string> letterCombinationResults = new List<string>();
+        private Dictionary<char, List<char>> phonenumber = new Dictionary<char, List<char>>
+        {
+            { '0', new List<char>()},
+            { '1', new List<char>()},
+            { '2', new List<char>() {'a', 'b', 'c'}},
+            { '3', new List<char>() {'d', 'e', 'f'}},
+            { '4', new List<char>() {'g', 'h', 'i'}},
+            { '5', new List<char>() {'j', 'k', 'l'}},
+            { '6', new List<char>() {'m', 'n', 'o'}},
+            { '7', new List<char>() {'p', 'q', 'r', 's'}},
+            { '8', new List<char>() {'t', 'u', 'v'}},
+            { '9', new List<char>() {'w', 'x', 'y', 'z'}}
+        };
+
         //https://leetcode.com/problems/zigzag-conversion/description/
         //https://www.geeksforgeeks.org/print-concatenation-of-zig-zag-string-form-in-n-rows/
-        public static string Convert(string str, int n)
+        public string Convert(string str, int n)
         {
             // Corner Case (Only one row)
             if (n == 1)
@@ -68,7 +83,7 @@ namespace ProblemSolving
         }
 
         //https://leetcode.com/problems/string-to-integer-atoi/description/
-        public static int MyAtoi(string str)
+        public int MyAtoi(string str)
         {
             if (string.IsNullOrEmpty(str) || string.IsNullOrWhiteSpace(str))
             {
@@ -142,7 +157,7 @@ namespace ProblemSolving
 
         //https://leetcode.com/problems/3sum/description/
         //https://www.geeksforgeeks.org/find-triplets-array-whose-sum-equal-zero/
-        public static IList<IList<int>> ThreeSum(int[] nums)
+        public IList<IList<int>> ThreeSum(int[] nums)
         {
             IList<IList<int>> results = new List<IList<int>>();
             if (nums.Length == 0)
@@ -186,40 +201,40 @@ namespace ProblemSolving
         //https://leetcode.com/problems/longest-palindromic-substring/description/
         //https://gist.github.com/riyadparvez/6058526
         //https://www.geeksforgeeks.org/longest-palindrome-substring-set-1/
-        public static string LongestPalindrome(string s)
+        public string LongestPalindrome(string s)
         {
             int start = 0;
             int maxLength = 0;
-            if(string.IsNullOrEmpty(s))
+            if (string.IsNullOrEmpty(s))
             {
                 return "";
             }
             bool[,] dp = new bool[s.Length, s.Length];
 
-            for(int i=0; i<s.Length; i++)
+            for (int i = 0; i < s.Length; i++)
             {
                 dp[i, i] = true;
             }
             maxLength = 1;
 
-            for(int i=0; i<s.Length-1; i++)
+            for (int i = 0; i < s.Length - 1; i++)
             {
-                if(s[i] == s[i+1])
+                if (s[i] == s[i + 1])
                 {
                     start = i;
                     maxLength = 2;
                 }
             }
 
-            for(int length=3; length<s.Length; length++)
+            for (int length = 3; length < s.Length; length++)
             {
-                for(int i=0; i<s.Length-length+1; i++)
+                for (int i = 0; i < s.Length - length + 1; i++)
                 {
                     int j = i + length - 1;
-                    if(s[i] == s[j] && dp[i+1, j-1])
+                    if (s[i] == s[j] && dp[i + 1, j - 1])
                     {
                         dp[i, j] = true;
-                        if(j-i >= maxLength)
+                        if (j - i >= maxLength)
                         {
                             start = i;
                             maxLength = j - i + 1;
@@ -229,6 +244,35 @@ namespace ProblemSolving
             }
 
             return s.Substring(start, maxLength);
+        }
+
+        //https://leetcode.com/problems/letter-combinations-of-a-phone-number/description/
+        //https://miafish.wordpress.com/2015/02/03/print-all-possible-words-from-phone-digits/
+        public IList<string> LetterCombinations(string digits)
+        {
+            letterCombinationResults = new List<string>();
+            LetterCombinationUtil(digits, 0, new StringBuilder());
+            return letterCombinationResults;
+        }
+
+        private void LetterCombinationUtil(string digits, int i, StringBuilder result)
+        {
+            if(i >= digits.Length)
+            {
+                if(result.Length > 0)
+                {
+                    this.letterCombinationResults.Add(result.ToString());
+                }
+                return;
+            }
+
+            var cur = phonenumber[digits[i]];
+            foreach(char ch in cur)
+            {
+                result.Append(ch);
+                LetterCombinationUtil(digits, i + 1, result);
+                result.Remove(result.Length - 1, 1);
+            }
         }
     }
 }
